@@ -17,7 +17,7 @@ match ExtraWhitespace /\s\+$/
 "GET RID OF SWAPFILES
 set noundofile
 set noswapfile
-set backupdir=~/.config/nvim/backupdir/
+set backupdir=~/.vim/backupdir
 let mapleader = " "
 nnoremap <leader>r :set relativenumber!<CR>
 "Arrow Keys remapped to No Operation in Normal and Insert mode
@@ -30,12 +30,29 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-call plug#begin("~/.config/nvim/plugged")
+call plug#begin("~/.vim/plugged")
+"	support for lsp and completion
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	" support for JS, TS and JSX
-	Plug 'pangloss/vim-javascript'
-	Plug 'maxmellon/vim-jsx-pretty'
-        " multiple cursors ctrl+n to select a word
-        " n to jump to next occurrence, N to jump to previous occurrence
+
+"	faster html
+	Plug 'mattn/emmet-vim'
+
+"	cool change surround
+	Plug 'tpope/vim-surround'
+
+"	multiple cursors ctrl+n to select a word
+"	n to jump to next occurrence, N to jump to previous occurrence
         Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 call plug#end()
+
+"=====COC CONFIG=====
+"if using vanilla vim
+set hidden
+set updatetime=300
+set shortmess=aFc
+"global install
+let g:coc_global_extensions = ["coc-jedi", "coc-tsserver", "coc-css", "coc-html", "coc-json"]
+
+"=====EMMET CONFIG=====
+"define modes where emmet can be used
+let g:user_mode="n"
